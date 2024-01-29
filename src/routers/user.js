@@ -110,10 +110,15 @@ const upload = multer({
 })
 
 router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
-    const pngBufferImg = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
-    req.user.avatar = pngBufferImg
-    await req.user.save()
-    res.send()
+    try {
+        const pngBufferImg = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
+        req.user.avatar = pngBufferImg
+        await req.user.save()
+        res.send()
+    } catch (error) {
+        res.send(error?.message)
+    }
+
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
 })
