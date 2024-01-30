@@ -1,4 +1,9 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv'
+
+dotenv.config({
+    path: `./config/${process.env.NODE_ENV}.env`
+})
 
 try {
     mongoose.connect(process.env.MONGODB_URL);
