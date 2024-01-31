@@ -11,6 +11,7 @@ Task Manager API is a RESTful web service that provides endpoints for managing t
 - [Configuration](#configuration)
 - [Testing](#testing)
 - [Contributing](#contributing)
+- [Live Server](#live)
 
 ## Introduction
 
@@ -365,3 +366,10 @@ npm test
 
 Feel free to contribute to the project. Fork the repository, make your changes, and submit a pull request.
 
+## Live Server
+The project is deployed on a live server hosted on Render. You can access the live server here:
+[Live server](https://nodejs-task-manager-sy06.onrender.com)
+
+### Check my avatar
+After creating my user and uploading my picture, my avatar can be viewed at the following URL:
+[Check My avatar](https://nodejs-task-manager-sy06.onrender.com/users/65b8083d087dc906eebfd8b4/avatar)
