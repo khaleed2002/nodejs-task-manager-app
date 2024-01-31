@@ -347,7 +347,9 @@ API Base URL: http://localhost:3000
 
 ## Authentication
 To access protected endpoints, include the user's access token in the Authorization header of the HTTP request:
-
+```bash
+Authorization: Bearer access_token
+```
 ## Configuration
 The project uses environment variables for configuration. You can find the environment variables in the .env file for development, and you may create separate files for production and testing.
 
