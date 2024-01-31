@@ -7,9 +7,10 @@ Task Manager API is a RESTful web service that provides endpoints for managing t
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage and API Reference](#usage)
+- [Authentication](##authentication)
+- [Configuration](##configuration)
 - [Testing](#testing)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -59,26 +60,26 @@ API Base URL: http://localhost:3000
    - `POST /users`
    - *Request body*
       ```bash
-         {
-            "email": "user@example.com",
-            "password": "user_123",
-            "name": "User",
-            "age": 22
-         }
+      {
+         "email": "user@example.com",
+         "password": "user_123",
+         "name": "User",
+         "age": 22
+      }
       ```
    - *Response*
       - Status Code: 201 Created
       - Body
       ```bash
-         {
-            "user": {
-               "_id": "user_id",
-               "name": "User",
-               "email": "user@example.com",
-               "age": 22
-            },
-            "token": "access_token"
-         }
+      {
+         "user": {
+            "_id": "user_id",
+            "name": "User",
+            "email": "user@example.com",
+            "age": 22
+         },
+         "token": "access_token"
+      }
       ```
 
 ------------------
@@ -87,24 +88,24 @@ API Base URL: http://localhost:3000
    - `POST /users/login`
    - *Request body*
       ```bash
-         {
-            "email": "user@example.com",
-            "password": "user_123"
-         }
+      {
+         "email": "user@example.com",
+         "password": "user_123"
+      }
       ```
    - *Response*
       - Status Code: 200 OK
       - Body
       ```bash
-         {
-            "user": {
-               "_id": "user_id",
-               "name": "User",
-               "email": "user@example.com",
-               "age": 22
-            },
-            "token": "access_token"
-         }
+      {
+         "user": {
+            "_id": "user_id",
+            "name": "User",
+            "email": "user@example.com",
+            "age": 22
+         },
+         "token": "access_token"
+      }
       ```
 
 ------------------
@@ -131,15 +132,15 @@ API Base URL: http://localhost:3000
       - Status Code: 200 OK
       - Body
       ```bash
-         {
-            "user": {
-               "_id": "user_id",
-               "name": "User",
-               "email": "user@example.com",
-               "age": 22
-            },
-            "token": "access_token"
-         }
+      {
+         "user": {
+            "_id": "user_id",
+            "name": "User",
+            "email": "user@example.com",
+            "age": 22
+         },
+         "token": "access_token"
+      }
       ```
 
 ------------------
@@ -149,21 +150,21 @@ API Base URL: http://localhost:3000
    - Authentication: Bearer Token
    - *Request body*
       ```bash
-         {
-            "name": "New Name",
-            "age": 26
-         }
+      {
+         "name": "New Name",
+         "age": 26
+      }
       ```
    - *Response*
       - Status Code: 200 OK
       - Body
       ```bash
-         {
-            "_id": "user_id",
-            "name": "New Name",
-            "email": "user@example.com",
-            "age": 26
-         }
+      {
+         "_id": "user_id",
+         "name": "New Name",
+         "email": "user@example.com",
+         "age": 26
+      }
       ```
 
 ------------------
@@ -175,12 +176,12 @@ API Base URL: http://localhost:3000
       - Status Code: 200 OK
       - Body
       ```bash
-         {
-            "_id": "user_id",
-            "name": "User",
-            "email": "user@example.com",
-            "age": 22
-         }
+      {
+         "_id": "user_id",
+         "name": "User",
+         "email": "user@example.com",
+         "age": 22
+      }
       ```
 ------------------
 - Upload User Avatar: Upload avatar for the authenticated user.
@@ -196,8 +197,6 @@ API Base URL: http://localhost:3000
 - Get User Avatar: Get avatar for any user.
 
    - `GET  /users/:id/avatar`
-   - Request
-      - id parameter for the user
    - *Response*
       - Status Code: 200 OK
       - 'Content-Type': 'image/png'
@@ -212,10 +211,155 @@ API Base URL: http://localhost:3000
       - Status Code: 200 OK
       - Body
       ```bash
-         {
-            "_id": "user_id",
-            "name": "User",
-            "email": "user@example.com",
-            "age": 22
-         }
+      {
+         "_id": "user_id",
+         "name": "User",
+         "email": "user@example.com",
+         "age": 22
+      }
       ```
+
+### Task Endpoints
+
+- Create Task: Create a new task for the authenticated user.
+   - `POST  /tasks`
+   - Authentication: Bearer Token
+   - *Request body*
+      ```bash
+      {
+         "description": "Complete task A"
+      }
+      ```
+   - *Response*
+      - Status Code: 201 Created
+      - Body
+      ```bash
+      {
+         "_id": "task_id",
+         "description": "Complete task A",
+         "completed": false,
+         "creator": "user_id",
+         "createdAt": "Date",
+         "updatedAt": "Date"
+      }
+      ```
+
+------------------
+- Get Tasks: Get tasks for the authenticated user.
+   - `GET /tasks`
+   - Authentication: Bearer Token
+   - *Request*
+      - Query Parameters:
+         - completed (optional): Filter tasks by completion status (true or false).
+         - limit (optional): Limit the number of tasks to retrieve.
+         - skip (optional): Skip a specified number of tasks.
+         - sortBy (optional): Sort tasks by a specific field and order (createdAt_asc or createdAt_desc).
+      
+   - *Response*
+      - Status Code: 200 OK
+      - Body
+      ```bash
+      [
+      {
+         "_id": "task_id1",
+         "description": "Complete task A",
+         "completed": false,
+         "creator": "user_id",
+         "createdAt": "Date",
+         "updatedAt": "Date"
+      },
+      {
+         "_id": "task_id2",
+         "description": "Complete task B",
+         "completed": true,
+         "creator": "user_id",
+         "createdAt": "Date",
+         "updatedAt": "Date"
+      }
+      ]
+
+  
+      ```
+
+------------------
+- Get Task by ID: Get a task by its ID for the authenticated user.
+
+   - `GET /tasks/:id`
+   - Authentication: Bearer Token
+   - *Response*
+      - Status Code: 200 OK
+      - Body
+      ```bash
+      {
+         "_id": "task_id",
+         "description": "Complete task A",
+         "completed": false,
+         "creator": "user_id",
+         "createdAt": "Date",
+         "updatedAt": "Date"
+      }
+      ```
+
+------------------
+- Update Task: Update a task by its ID for the authenticated user.
+
+   - `PATCH /tasks/:id`
+   - Authentication: Bearer Token
+   - *Request body*
+      ```bash
+      {
+         "description": "Updated task A",
+         "completed": true
+      }
+      ```
+   - *Response*
+      - Status Code: 200 OK
+      - Body
+      ```bash
+      {
+         "_id": "task_id",
+         "description": "Updated task A",
+         "completed": true,
+         "creator": "user_id",
+         "createdAt": "Date",
+         "updatedAt": "Date"
+      }
+      ```
+------------------
+- Delete Task: Delete a task by its ID for the authenticated user.
+
+   - `DELETE /tasks/:id`
+   - Authentication: Bearer Token
+   - *Response*
+      - Status Code: 200 OK
+      - Body
+      ```bash
+      {
+         "_id": "task_id",
+         "description": "Updated task A",
+         "completed": true,
+         "creator": "user_id",
+         "createdAt": "Date",
+         "updatedAt": "Date"
+      }
+      ```
+
+
+## Authentication
+To access protected endpoints, include the user's access token in the Authorization header of the HTTP request:
+
+## Configuration
+The project uses environment variables for configuration. You can find the environment variables in the .env file for development, and you may create separate files for production and testing.
+
+## Testing
+The project includes Jest for testing. Run tests using:
+
+```bash
+npm test
+
+```
+
+## Contributing
+
+Feel free to contribute to the project. Fork the repository, make your changes, and submit a pull request.
+
