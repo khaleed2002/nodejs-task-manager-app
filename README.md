@@ -188,7 +188,7 @@ API Base URL: http://localhost:3000
 
    - `POST  /users/me/avatar`
    - Authentication: Bearer Token
-   - Request
+   - *Request*
       - includes file attachment of type (jpg, jpeg, png)
    - *Response*
       - Status Code: 200 OK
