@@ -7,8 +7,8 @@ Task Manager API is a RESTful web service that provides endpoints for managing t
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage and API Reference](#usage)
-- [Authentication](##authentication)
-- [Configuration](##configuration)
+- [Authentication](#authentication)
+- [Configuration](#configuration)
 - [Testing](#testing)
 - [Contributing](#contributing)
 
